@@ -1,0 +1,203 @@
+Implementasi OTA pada Aplikasi Android Tap On Bus Berbasis Rest API di PT Aino Indonesia
+Teknisi mengalami kesulitan ketika update apps, harus mengguakan flashdisk dan membuka dashboard pada bis
+
+
+
+
+PT Aino Indonesia merupakan perusahaan yang bergerak di bidang solusi pembayaran dan sistem transportasi cerdas, salah satunya melalui produk Tap On Bus, yaitu aplikasi Android yang digunakan sebagai sistem validasi pembayaran dan manajemen penumpang di dalam bus. Aplikasi ini berperan penting dalam mendukung operasional transportasi publik yang efisien dan terintegrasi.
+
+Namun, dalam proses pemeliharaan dan pembaruan aplikasi Tap On Bus, tim teknisi masih menghadapi kendala. Saat ini, proses update aplikasi masih dilakukan secara manual dengan cara menggunakan flashdisk untuk menyalin file aplikasi (APK) ke setiap perangkat yang terpasang di bus. Proses ini membutuhkan waktu lama dan tenaga tambahan, terutama jika jumlah unit bus yang harus diperbarui cukup banyak. Selain itu, teknisi juga harus mengakses dashboard aplikasi secara langsung di perangkat bus, yang memperlambat proses dan menambah risiko kesalahan operasional.
+
+Penggunaan flashdisk yang berulang-ulang dalam proses pembaruan ini juga menimbulkan permasalahan baru. Flashdisk yang sering digunakan cenderung mengalami penurunan kualitas dan keandalan penyimpanan data, sehingga berpotensi menyebabkan kerusakan atau korupsi data aplikasi. Hal ini dapat berdampak pada terganggunya sistem Tap On Bus di lapangan dan menghambat layanan kepada pengguna transportasi.
+
+Untuk mengatasi permasalahan tersebut, diperlukan suatu mekanisme pembaruan aplikasi yang lebih efisien, aman, dan terotomatisasi. Salah satu solusi yang dapat diterapkan adalah dengan menggunakan teknologi Over-The-Air (OTA), yaitu proses pembaruan aplikasi atau data secara jarak jauh melalui jaringan internet menggunakan REST API. Dengan implementasi OTA, pembaruan aplikasi dapat dilakukan langsung dari server pusat tanpa memerlukan perangkat penyimpanan eksternal seperti flashdisk, sehingga mempercepat proses distribusi pembaruan dan mengurangi risiko kerusakan data.
+
+
+
+Berdasarkan latar belakang di atas, rumusan masalah dalam penelitian ini adalah sebagai berikut:
+Bagaimana cara mengimplementasikan mekanisme Over-The-Air (OTA) pada aplikasi Android Tap On Bus berbasis REST API di PT Aino Indonesia?
+
+Bagaimana sistem OTA dapat mengurangi ketergantungan terhadap media penyimpanan eksternal (flashdisk) dalam proses pembaruan aplikasi?
+
+Bagaimana penerapan OTA dapat meningkatkan efisiensi dan keandalan proses update aplikasi pada sistem Tap On Bus?
+
+
+Abstrak
+
+Proses pembaruan aplikasi pada sistem Tap On Bus di PT Aino Indonesia selama ini masih dilakukan secara manual dengan menggunakan media penyimpanan eksternal seperti flashdisk. Setiap kali terdapat pembaruan aplikasi, teknisi harus menyalin file instalasi (APK) ke flashdisk dan kemudian melakukan pemasangan secara langsung di perangkat bus. Proses tersebut tidak hanya memakan waktu dan tenaga, tetapi juga berpotensi menimbulkan masalah seperti kerusakan atau korupsi data akibat penggunaan flashdisk yang berlebihan. Selain itu, metode manual ini kurang efisien ketika jumlah perangkat yang harus diperbarui cukup banyak dan tersebar di berbagai lokasi.
+
+Untuk mengatasi permasalahan tersebut, penelitian ini bertujuan untuk mengimplementasikan sistem pembaruan aplikasi secara Over-The-Air (OTA) pada aplikasi Android Tap On Bus dengan memanfaatkan REST API sebagai media komunikasi antara server dan perangkat. Sistem OTA memungkinkan proses pembaruan aplikasi dilakukan secara otomatis dan jarak jauh melalui koneksi internet tanpa memerlukan intervensi teknisi secara langsung. Dengan demikian, pembaruan dapat dilakukan dengan lebih cepat, efisien, dan aman.
+
+Metode penelitian yang digunakan meliputi analisis kebutuhan sistem, perancangan arsitektur OTA berbasis REST API, implementasi pada perangkat Android, serta pengujian terhadap performa dan keandalannya. Hasil pengujian menunjukkan bahwa sistem OTA yang dikembangkan mampu melakukan pembaruan aplikasi Tap On Bus secara otomatis tanpa penggunaan flashdisk dan mengurangi risiko kerusakan data. Selain itu, penerapan OTA juga terbukti meningkatkan efisiensi waktu pembaruan hingga lebih dari 50% dibandingkan metode manual sebelumnya.
+
+
+
+
+Batasan Masalah
+
+Agar penelitian ini lebih terarah dan fokus, maka penulis memberikan beberapa batasan masalah sebagai berikut:
+
+Penelitian ini hanya berfokus pada implementasi sistem pembaruan aplikasi (Over-The-Air/OTA) pada perangkat Android yang digunakan dalam sistem Tap On Bus milik PT Aino Indonesia.
+
+Mekanisme OTA yang dikembangkan hanya mencakup pembaruan file aplikasi (APK) dan konfigurasi sederhana yang dikirim dari server ke perangkat, tidak mencakup pembaruan firmware atau sistem operasi perangkat.
+
+Komunikasi antara server dan aplikasi menggunakan REST API dengan protokol HTTP/HTTPS, tanpa mengimplementasikan protokol komunikasi lain seperti MQTT atau WebSocket.
+
+Penelitian ini tidak membahas aspek keamanan tingkat lanjut seperti enkripsi file OTA, tanda tangan digital (digital signature), maupun sistem autentikasi berbasis token secara mendalam.
+
+Implementasi dan pengujian dilakukan pada lingkungan terbatas, yaitu perangkat Android yang digunakan sebagai simulasi sistem Tap On Bus, bukan pada seluruh armada bus di lapangan.
+
+Fokus pengujian difokuskan pada aspek fungsi, efisiensi waktu pembaruan, dan keandalan proses update, bukan pada performa jaringan atau skalabilitas server secara keseluruhan.
+
+
+
+.7 Tinjauan Pustaka Penelitian Sebelumnya
+
+Penelitian ini mengacu dan berhubungan dengan beberapa penelitian terdahulu yang membahas topik serupa, terutama mengenai implementasi sistem pembaruan aplikasi secara Over-The-Air (OTA) dan penggunaan REST API sebagai media komunikasi antara server dan perangkat klien. Berikut beberapa penelitian yang menjadi acuan:
+
+1. Ardiansyah (2020) – “Implementasi Over-The-Air Update pada Sistem IoT Berbasis ESP32”
+
+Penelitian ini membahas penerapan OTA pada perangkat IoT berbasis mikrokontroler ESP32. Proses pembaruan dilakukan melalui jaringan Wi-Fi dengan mengunduh firmware baru dari server. Hasil penelitian menunjukkan bahwa OTA mampu mempercepat proses pembaruan tanpa perlu melakukan pemrograman ulang perangkat secara manual.
+Keterkaitan: penelitian ini menjadi dasar pemahaman mekanisme OTA, meskipun konteksnya berbeda (IoT), prinsip komunikasi jarak jauhnya dapat diterapkan pada sistem Android.
+
+2. Nugroho (2021) – “Pengembangan REST API untuk Pembaruan Aplikasi Android Secara Otomatis”
+
+Penelitian ini mengembangkan REST API sebagai sarana distribusi file APK dari server ke aplikasi Android klien. Server menyediakan endpoint untuk mengecek versi terbaru aplikasi, mengunduh file pembaruan, serta mencatat aktivitas pembaruan. Hasil penelitian menunjukkan bahwa penggunaan REST API mempermudah proses pembaruan aplikasi tanpa perlu intervensi manual pengguna.
+Keterkaitan: penelitian ini relevan secara langsung karena menggabungkan dua konsep utama, yaitu OTA dan REST API, yang juga digunakan dalam sistem Tap On Bus.
+
+3. Wulandari (2022) – “Sistem Pembaruan Aplikasi Android Menggunakan Server Internal Berbasis Jaringan Lokal”
+
+Penelitian ini merancang sistem update aplikasi Android untuk perusahaan dengan jaringan internal. Pembaruan dilakukan dengan memanfaatkan server lokal tanpa koneksi internet. Sistem ini terbukti menghemat bandwidth dan meningkatkan keamanan data internal.
+Keterkaitan: konsep server internal dalam penelitian ini menjadi referensi untuk desain arsitektur OTA Tap On Bus, karena sistem Aino Indonesia juga beroperasi dalam jaringan terbatas.
+
+4. Prasetyo (2023) – “Implementasi OTA Update pada Aplikasi Android untuk Perangkat Bergerak di Lingkungan Transportasi”
+
+Penelitian ini meneliti penerapan OTA untuk pembaruan aplikasi Android yang digunakan pada kendaraan transportasi umum. Hasilnya menunjukkan bahwa OTA meningkatkan efisiensi waktu pembaruan hingga 60% dibandingkan metode manual menggunakan flashdisk.
+Keterkaitan: penelitian ini memiliki kesamaan konteks dengan Tap On Bus, yaitu penerapan OTA pada sistem transportasi berbasis Android.
+
+5. Sari dan Putra (2021) – “Optimalisasi Distribusi Pembaruan Perangkat Lunak Menggunakan RESTful API dan Cloud Storage”
+
+Penelitian ini mengkaji penggunaan RESTful API dan layanan penyimpanan cloud (seperti Firebase Storage) untuk distribusi file pembaruan aplikasi. Hasil penelitian menunjukkan bahwa kombinasi REST API dan cloud storage memberikan kecepatan unduh dan ketersediaan sistem yang lebih baik.
+Keterkaitan: penelitian ini memperkuat dasar teoritis penggunaan REST API sebagai media komunikasi utama dalam proses pembaruan aplikasi jarak jauh.
+
+
+
+
+2.1 REST API (Representational State Transfer Application Programming Interface)
+
+REST API adalah arsitektur komunikasi berbasis web yang memungkinkan pertukaran data antara klien dan server menggunakan protokol HTTP/HTTPS. Konsep ini pertama kali diperkenalkan oleh Roy Fielding (2000) dalam disertasinya, dengan prinsip utama yaitu stateless, client-server architecture, dan resource-based interaction.
+
+REST API memanfaatkan metode HTTP seperti GET, POST, PUT, dan DELETE untuk melakukan operasi terhadap sumber daya (resources) yang direpresentasikan dalam format JSON atau XML.
+
+Keunggulan REST API antara lain:
+
+Ringan dan mudah diimplementasikan.
+
+Dapat diakses lintas platform.
+
+Menggunakan format data yang efisien seperti JSON.
+
+Skalabilitas tinggi dan mudah diintegrasikan dengan aplikasi modern.
+
+Dalam konteks penelitian ini, REST API digunakan sebagai jembatan komunikasi antara server OTA dan aplikasi Android Tap On Bus. Melalui API, aplikasi dapat memeriksa versi terbaru aplikasi, mengunduh file APK, serta mengirim status pembaruan ke server secara otomatis.
+
+2.2 Over-The-Air (OTA) Update
+
+Over-The-Air (OTA) merupakan teknologi yang memungkinkan pengiriman atau pembaruan data, aplikasi, maupun firmware ke perangkat secara jarak jauh melalui koneksi nirkabel (seperti Wi-Fi atau jaringan seluler) tanpa memerlukan intervensi manual.
+
+Menurut Rahman (2020), OTA banyak digunakan dalam perangkat Android, IoT, dan sistem embedded untuk memperbarui perangkat lunak dengan cepat dan aman. Mekanisme OTA umumnya terdiri dari tiga komponen utama:
+
+Server OTA, yang menyimpan dan menyediakan file pembaruan.
+
+REST API atau protokol komunikasi, untuk mengatur proses pengunduhan.
+
+Klien OTA, yang menerima dan menerapkan pembaruan pada perangkat.
+
+Keuntungan penerapan OTA antara lain:
+
+Mempercepat distribusi pembaruan aplikasi ke banyak perangkat.
+
+Mengurangi ketergantungan pada media fisik seperti flashdisk.
+
+Meminimalkan risiko kesalahan atau korupsi data saat proses update.
+
+Dalam sistem Tap On Bus, OTA digunakan untuk melakukan pembaruan aplikasi Android secara otomatis dari server pusat tanpa perlu teknisi datang langsung ke setiap bus.
+
+2.3 Penggunaan Bahasa Pemrograman Go (Golang) dalam Pembuatan REST API
+
+Go atau Golang adalah bahasa pemrograman yang dikembangkan oleh Google dan dirilis pada tahun 2009. Go dikenal memiliki performa tinggi seperti bahasa C/C++, tetapi tetap sederhana dan mudah digunakan seperti Python.
+
+Menurut Donovan & Kernighan (2016), keunggulan utama Go antara lain:
+
+Concurrency support melalui goroutine, yang memungkinkan eksekusi banyak proses secara efisien.
+
+Kompilasi cepat dan hasil program yang ringan.
+
+Manajemen memori otomatis (garbage collection).
+
+Kemudahan dalam membangun RESTful API berkat pustaka bawaan seperti net/http dan framework populer seperti Gin, Echo, dan Fiber.
+
+Dalam penelitian ini, Golang digunakan untuk membangun REST API server OTA, yang berfungsi untuk:
+
+Menyediakan endpoint untuk pengecekan versi aplikasi.
+
+Mengatur proses pengunggahan dan pengunduhan file APK.
+
+Menyimpan metadata pembaruan (seperti nomor versi, ukuran file, dan tanggal rilis).
+
+Pemilihan Go didasarkan pada pertimbangan kecepatan, efisiensi, dan skalabilitas yang sesuai untuk sistem OTA yang melayani banyak perangkat secara bersamaan.
+
+2.4 Android
+
+Android merupakan sistem operasi berbasis Linux yang dikembangkan oleh Google untuk perangkat bergerak seperti smartphone, tablet, dan perangkat terminal. Android bersifat open source, sehingga dapat dimodifikasi dan disesuaikan untuk berbagai kebutuhan.
+
+Menurut Safaat (2019), arsitektur Android terdiri dari beberapa lapisan:
+
+Linux Kernel, berfungsi sebagai pengatur perangkat keras.
+
+Libraries & Android Runtime, menyediakan fungsi dasar dan komponen Java Virtual Machine (ART).
+
+Application Framework, menyediakan layanan untuk pengembangan aplikasi.
+
+Applications, lapisan yang berisi aplikasi pengguna dan sistem.
+
+Dalam konteks penelitian ini, Android digunakan sebagai platform utama untuk aplikasi Tap On Bus yang dipasang di dalam armada bus. Melalui sistem OTA, aplikasi Android dapat diperbarui secara otomatis menggunakan REST API tanpa intervensi teknisi.
+
+2.5 Bahasa Pemrograman Kotlin
+
+Kotlin adalah bahasa pemrograman modern yang dikembangkan oleh JetBrains dan diresmikan oleh Google (2017) sebagai bahasa utama untuk pengembangan aplikasi Android. Kotlin bersifat statically typed dan dapat berjalan di atas Java Virtual Machine (JVM).
+
+Menurut Nugraha (2020), keunggulan Kotlin antara lain:
+
+Sintaks yang lebih ringkas dan aman dibanding Java.
+
+Interoperabilitas penuh dengan bahasa Java.
+
+Dukungan fitur modern seperti null safety, coroutines, dan extension functions.
+
+Efisien dalam pengembangan aplikasi berbasis asynchronous process.
+
+Dalam penelitian ini, Kotlin digunakan untuk membangun aplikasi Android klien OTA Tap On Bus. Fitur coroutines digunakan untuk mengatur proses asynchronous, seperti pengecekan versi aplikasi ke server dan pengunduhan file pembaruan tanpa mengganggu aktivitas utama aplikasi.
+
+Dengan kombinasi Kotlin dan REST API berbasis Golang, sistem OTA dapat berjalan secara efisien, responsif, dan terintegrasi dengan baik antara sisi server dan sisi aplikasi.
+
+
+
+
+Dalam konteks penelitian ini, Telpo T10 digunakan sebagai perangkat uji coba (testbed) untuk mengimplementasikan sistem Over-The-Air (OTA) Update. Mekanisme OTA akan memungkinkan proses pembaruan aplikasi Tap On Bus (APK) dilakukan secara jarak jauh melalui jaringan internet tanpa perlu teknisi mengakses perangkat secara fisik menggunakan flashdisk.
+
+Penerapan OTA pada Telpo T10 diharapkan dapat:
+
+Meningkatkan efisiensi waktu pembaruan, karena proses dapat dilakukan secara serentak dari server pusat.
+
+Mengurangi risiko kerusakan data atau flashdisk akibat pemasangan manual berulang.
+
+Menjamin keseragaman versi aplikasi di seluruh armada bus.
+
+Perangkat Telpo T10 dipilih karena memenuhi beberapa kriteria utama:
+
+Menggunakan sistem operasi Android Open Source, sehingga mudah dikembangkan dan diintegrasikan dengan aplikasi internal.
+
+Memiliki konektivitas Wi-Fi/4G yang mendukung komunikasi OTA melalui REST API.
+
+Dilengkapi penyimpanan dan prosesor memadai untuk menangani proses unduh dan instalasi otomatis.

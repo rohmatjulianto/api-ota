@@ -1,0 +1,9 @@
+{
+  "url": "https://afc-dev.ainosi.net/api/v1/transactions/payment",
+  "serial_number": "A41T010000300284",
+  "basic_token": "NDI0MDUyOlpvUVFZVk1mdHJ3dVZzeWFlQ1c0c01ndjdMWjhGRmVu",
+  "product_indicator": "IN_OUT",
+  "messagingType": "SYNC_ACQ",
+  "source": "TOB",
+  "pca": "LIVE"
+}
